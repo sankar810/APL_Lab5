@@ -1,0 +1,91 @@
+#include <iostream>
+
+using namespace std;
+
+class Point {
+	int x, y;
+public:
+
+	Point(int xp, int yp){
+		x = xp;
+		y = yp;
+	}
+
+	Point(){}
+
+	void Print(){
+		cout << '('<<x<<','<<y<<')';
+	}
+
+friend ostream& operator<<(ostream& os, const Point& P)  
+{  
+    return os<< P.x << P.y <<endl;  
+}
+friend istream& operator>> (istream& is, Point& P)  
+{  
+    return is>> P.x>> P.y;  
+    
+} 
+Point operator+(const Point& op2)
+{
+  Point temp;
+  temp.x = op2.x + x;
+  temp.y = op2.y + y;
+  return temp;
+}
+Point operator-(const Point& op2)
+{
+  Point temp;
+  temp.x = x-op2.x;
+  temp.y = y-op2.y;
+  return temp;
+}
+bool operator==(const Point& op1)
+{
+    return(x==op1.x&&y==op1.y);
+}
+bool operator!=(const Point& op1)
+{
+    return(x!=op1.x&&y!=op1.y);
+}
+};
+ 
+
+
+int main()
+{
+  int a,b;
+  cout<<"Enter the point 1 values"<<endl;
+  cin>>a;
+  cin>>b;
+  
+  Point ob1(a, b);
+  cout<<"Enter the point 2 values"<<endl;
+  cin>>a;
+  cin>>b;
+  Point ob2(a, b), ob3,ob4;
+  
+  cout<<"The two values"<<endl;
+  ob1.Print();
+  cout<<endl;
+  ob2.Print();
+  cout<<endl;
+
+  ob3 = ob2 + ob1; 
+  cout<<"Addition of the values"<<endl;
+  ob3.Print();
+  cout<<endl;
+  ob4 = ob1 - ob2;
+  cout<<"Subtraction of the values"<<endl;
+  ob4.Print();
+  cout<<endl;
+  if(ob1==ob2)
+    cout<<"Values are equal"<<endl;
+  if(ob1!=ob2)
+    cout<<"Values are not equal"<<endl;
+    
+  return 0;
+}
+
+
+
